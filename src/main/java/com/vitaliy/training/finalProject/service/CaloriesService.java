@@ -3,11 +3,13 @@ package com.vitaliy.training.finalProject.service;
 import com.vitaliy.training.finalProject.model.Client;
 import com.vitaliy.training.finalProject.model.Meal;
 import com.vitaliy.training.finalProject.model.Sex;
+import org.apache.log4j.Logger;
 
 import java.util.Date;
 import java.util.List;
 
 public class CaloriesService {
+    private static Logger logger = Logger.getLogger(CaloriesService.class);
     /*
     Мужчина
     BMR = 88.36 + (13.4 x вес, кг) + (4.8 х рост, см) – (5.7 х возраст, лет)
@@ -18,6 +20,7 @@ public class CaloriesService {
 
      */
     public double calcCaloriesOverhead(Client client, Date date, List<Meal> meal) {
+        logger.info("calCalories");
         double coef0 = 88.36;
         double coef1 = 13.4;
         double coef2 = 4.8;

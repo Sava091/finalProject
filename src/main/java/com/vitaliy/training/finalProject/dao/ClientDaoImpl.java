@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import com.vitaliy.training.finalProject.model.Activity;
 import com.vitaliy.training.finalProject.model.Client;
 import com.vitaliy.training.finalProject.model.Sex;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
     private static final ClientDao instance = new ClientDaoImpl("jdbc:mysql://localhost:3306/fitnesstracking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
             "root", "root");
+    private static Logger logger = Logger.getLogger(ClientDaoImpl.class);
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String AGE = "age";
@@ -34,6 +36,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public boolean create(Client client) {
+        logger.info("Client create");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -66,6 +69,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public Client read(Long id) {
+        logger.info("Client read");
         Mapper<Client> clientMapper = rs -> {
             try {
                 if (rs.next()) {
@@ -92,7 +96,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public boolean update(Client client) {
-
+        logger.info("Client update");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -110,9 +114,9 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
             statement.setDouble(5, client.getWeight());
             statement.setString(6, client.getActivity().name());
             statement.setString(7, client.getSex().name());
-            statement.setLong(8, client.getId());
-            statement.setLong(9, client.getCoefId());
+            statement.setLong(8, client.getCoefId());
             statement.setLong(9, client.getClientMealId());
+            statement.setLong(10, client.getId());
             return statement.executeUpdate() >= 1;
 
         } catch (final SQLException e) {
@@ -125,7 +129,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public boolean delete(Client client) {
-
+        logger.info("Client delete");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -148,6 +152,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public Client readByName(String name) {
+        logger.info("Client readbyName");
         Mapper<Client> clientMapper = rs -> {
             try {
                 if (rs.next()) {
@@ -173,6 +178,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
     }
 
     public List<Client> findAll() {
+        logger.info("Client findAll");
         Mapper<List<Client>> clientMapper = rs -> {
             List<Client> clients = new ArrayList<>();
             try {

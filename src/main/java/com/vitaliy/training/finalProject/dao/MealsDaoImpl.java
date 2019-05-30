@@ -2,6 +2,7 @@ package com.vitaliy.training.finalProject.dao;
 
 import com.vitaliy.training.finalProject.model.Meal;
 import com.vitaliy.training.finalProject.model.Product;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
     private static final MealsDao instance = new MealsDaoImpl("jdbc:mysql://localhost:3306/fitnesstracking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
             "root", "root");
+    private static Logger logger = Logger.getLogger(MealsDaoImpl.class);
     public static final String ID = "id";
     public static final String PRODUCT_ID = "productId";
     public static final String MEAL_CLIENT_ID = "meal_client_id";
@@ -22,6 +24,7 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
 
     @Override
     public boolean create(Meal meal) {
+        logger.info("Meals create");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -29,13 +32,13 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
         try {
             connection = getConnection();
 
-            final String sql = "INSERT INTO meals (id, productId, meal_client_id, getQuantityOf100grPortions, meal_date) " +
+            final String sql = "INSERT INTO meals (id, meal_client_id, getQuantityOf100grPortions, meal_date) " +
                     "VALUES(?,?,?,?,?,?,?,?)";
             statement = connection.prepareStatement(sql);
             statement.setLong(1, meal.getId());
-            statement.setLong(1, meal.getMealClientId());
-            statement.setDouble(4, meal.getQuantityOf100grPortions());
-            statement.setDate(5, new Date(meal.getDate().getTime()));
+            statement.setLong(2, meal.getMealClientId());
+            statement.setDouble(3, meal.getQuantityOf100grPortions());
+            statement.setDate(4, new Date(meal.getDate().getTime()));
             return statement.executeUpdate() >= 1;
 
         } catch (final SQLException e) {
@@ -48,6 +51,7 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
 
     @Override
     public Meal read(Long id) {
+        logger.info("Meals read");
         Mapper<Meal> mealMapper = rs -> {
             try {
                 if (rs.next()) {
@@ -76,16 +80,58 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
 
     @Override
     public boolean update(Meal meal) {
+        logger.info("Meals update");
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getConnection();
+
+            final String sql = "UPDATE meals SET productId=?, meal_client_id=?, getQuantityOf100grPortions=?, meal_date=?" +
+                    " WHERE id=?";
+            statement = connection.prepareStatement(sql);
+            statement.setLong(1, meal.getMealClientId());
+            statement.setDouble(2, meal.getQuantityOf100grPortions());
+            statement.setDate(3, new Date(meal.getDate().getTime()));
+            statement.setLong(4, meal.getId());
+            return statement.executeUpdate() >= 1;
+
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(connection, statement, resultSet);
+        }
         return false;
     }
 
     @Override
     public boolean delete(Meal meal) {
+        logger.info("Meals delete");
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getConnection();
+
+            final String sql = "DELETE FROM meals WHERE id=?";
+            statement = connection.prepareStatement(sql);
+            statement.setLong(1, meal.getId());
+            return statement.executeUpdate() >= 1;
+
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(connection, statement, resultSet);
+        }
         return false;
     }
 
+
     @Override
     public List<Meal> findAll() {
+        logger.info("Meals findAll");
         Mapper<List<Meal>> mealsMapper = rs -> {
             List<Meal> meals = new ArrayList<>();
 

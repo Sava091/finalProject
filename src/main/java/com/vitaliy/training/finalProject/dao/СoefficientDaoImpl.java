@@ -1,6 +1,7 @@
 package com.vitaliy.training.finalProject.dao;
 
 import com.vitaliy.training.finalProject.model.Coefficient;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements CoefficientDao {
+
+    private static Logger logger = Logger.getLogger(СoefficientDaoImpl.class);
     public static final String IDCOEFFICIENTS = "idCoefficients";
     public static final String COEF0 = "coef0";
     public static final String COEF1 = "coef1";
@@ -28,7 +31,7 @@ public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements Coe
 
     @Override
     public boolean create(Coefficient сoefficient) {
-
+        logger.info("Coefficient create");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -57,7 +60,7 @@ public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements Coe
 
     @Override
     public Coefficient read(Long id) {
-
+        logger.info("Coefficient read");
         Mapper<Coefficient> coefficientMapper = rs -> {
             try {
                 if (rs.next()) {
@@ -80,7 +83,7 @@ public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements Coe
 
     @Override
     public boolean update(Coefficient сoefficient) {
-
+        logger.info("Coefficient update");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -109,7 +112,7 @@ public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements Coe
 
     @Override
     public boolean delete(Coefficient сoefficient) {
-
+        logger.info("Coefficient delete");
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -132,7 +135,7 @@ public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements Coe
 
     @Override
     public Coefficient readBySex(String sex) {
-
+        logger.info("Coefficient readBySex");
         Mapper<Coefficient> coefficientMapper = rs -> {
             try {
                 if (rs.next()) {
@@ -155,7 +158,7 @@ public class СoefficientDaoImpl extends AbstractDao<Coefficient> implements Coe
 
     @Override
     public List<Coefficient> findAll() {
-
+        logger.info("Coefficient findAll");
         Mapper<List<Coefficient>> coefficientMapper = rs -> {
             List<Coefficient> сoefficients = new ArrayList<>();
             try {

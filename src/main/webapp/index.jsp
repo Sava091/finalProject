@@ -1,7 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${lang}" />
+    <fmt:setBundle basename="messages"/>
 
+    <c:if test="${lang ne null}">
+        <fmt:setLocale value="${lang}"/>
+    </c:if>
 
+<html lang="${lang}">
 
 <html>
     <head>
@@ -17,6 +25,13 @@
             <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
+        <form action="/" method="GET">
+            <select id="lang" name="lang" onchange="submit()">
+                <option value="en" ${lang == 'en' ? 'selected' : ''}>English</option>
+                <option value="ru" ${lang == 'ru' ? 'selected' : ''}>Русский</option>
+            </select>
+            <input type="submit" value="Set lang"/>
+        </form>
 
     <jsp:include page="header.jsp"></jsp:include>
 
@@ -32,29 +47,29 @@
     			<div class="carousel-item text-center active">
     				<img src="img/slide1.jpg" class="img-fluid" alt="">
     				<div class="carousel-caption">
-    					<h1 class="display-2">Healthy LifeStyle</h1>
-    					<h3>Calories Tracking Application</h3>
+    					<h1 class="display-2"><fmt:message key = "profile"/></h1>
+    					<h3><fmt:message key = "caltrack"/></h3>
     				</div>
     			</div>
     			<div class="carousel-item text-center ">
     				<img src="img/slide2.jpg" class="img-fluid" alt="">
     				<div class="carousel-caption">
-    					<h1 class="display-2">Healthy LifeStyle</h1>
-    					<h3>Calories Tracking Application</h3>
+    					<h1 class="display-2"><fmt:message key = "profile"/></h1>
+    					<h3><fmt:message key = "caltrack"/></h3>
     				</div>
     			</div>
     			<div class="carousel-item text-center">
     				<img src="img/slide3.jpg" class="img-fluid" alt="">
     				<div class="carousel-caption">
-    					<h1 class="display-2">Healthy LifeStyle</h1>
-    					<h3>Calories Tracking Application</h3>
+    					<h1 class="display-2"><fmt:message key = "profile"/></h1>
+    					<h3><fmt:message key = "caltrack"/></h3>
     				</div>
     			</div>
     			<div class="carousel-item text-center">
     				<img src="img/slide4.jpg" class="img-fluid" alt="">
     				<div class="carousel-caption">
-    					<h1 class="display-2">Healthy LifeStyle</h1>
-    					<h3>Calories Tracking Application</h3>
+    					<h1 class="display-2"><fmt:message key = "profile"/></h1>
+    					<h3><fmt:message key = "caltrack"/></h3>
     				</div>
     			</div>
     		</div>
@@ -62,16 +77,11 @@
     		<div class="container-fluid">
     			<div class="row jumbotron jumbotron-fluid my-1">
     				<div class="col-10">
-    					<h3>Final Project
-    						Weight Loss / Food Tracking System. Customer chooses food (name,
-    						count proteins, fats, carbohydrates), which I ate (from the already prepared list) and writes
-    						Amount. The client can add his type of food (name, calories, count.
-    						proteins, fats, carbon). If the client has increased the daily rate, the system
-    						will inform him of this and write down how much Norma was exceeded. Norm
-    						take from the parameters Client (age, height, weight, lifestyle, etc.).</h3>
+    					<h3><fmt:message key = "finproj"/>
+    						<fmt:message key = "finprojtext"/></h3>
     				</div>
     				<div class="col-2">
-    					<a href="#"><button class="btn btn-info btn-lg d-block mx-auto">Read more! </button></a>
+    					<a href="#"><button class="btn btn-info btn-lg d-block mx-auto"><fmt:message key = "readmore"/></button></a>
     				</div>
     			</div>
     		</div>

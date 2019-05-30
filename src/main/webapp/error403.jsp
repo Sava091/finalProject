@@ -1,20 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" isELIgnored="false"%>
-
-<meta http-equiv="content-type" content="text/html" charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web:700,900" rel="stylesheet">
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" isELIgnored="false" isErrorPage="true"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
     <head>
             <title>
-                ERROR 404
+                <fmt:message key = "error"/> 403
             </title>
             <link rel="stylesheet" href="css/error.css">
+            <meta http-equiv="content-type" content="text/html" charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Titillium+Web:700,900" rel="stylesheet">
     </head>
 <body>
 	<div id="forbidden">
@@ -22,10 +21,10 @@
 			<div class="forbidden-403">
 				<h1>403</h1>
 			</div>
-			<h2>Oops! Forbidden!</h2>
-			<p>You really think that you can just get to any page you want??</p>
-			<p>Well you can but you just have to ask us first</p>
-			<a href="index.html">Go to Homepage</a>
+			<h2><fmt:message key = "oops"/> <fmt:message key = "forbidden"/></h2>
+			<p><fmt:message key = "error4031"/></p>
+			<p><fmt:message key = "error4032"/></p>
+			<a href="index.jsp"><fmt:message key = "go_home"/></a>
 		</div>
 	</div>
 
