@@ -46,7 +46,7 @@ public class LoginFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession(false);
         String lang = request.getParameter("lang");
         if (session != null) {
-            String sessLang = (String) session.getAttribute("lang");
+            String sessLang = session.getAttribute("lang").toString();
             if (sessLang == null) {
                 session.setAttribute("lang", lang);
             } else {

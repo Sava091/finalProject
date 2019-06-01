@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${lang}" />
@@ -8,6 +9,7 @@
     <c:if test="${lang ne null}">
         <fmt:setLocale value="${lang}"/>
     </c:if>
+
 
 <html lang="${lang}">
 
@@ -25,13 +27,13 @@
             <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <form action="/" method="GET">
+        <%--<form action="/" method="GET">
             <select id="lang" name="lang" onchange="submit()">
-                <option value="en" ${lang == 'en' ? 'selected' : ''}>English</option>
-                <option value="ru" ${lang == 'ru' ? 'selected' : ''}>Русский</option>
+                <option value="en_US" ${lang == 'en_US' ? 'selected' : ''}>English</option>
+                <option value="ru_RU" ${lang == 'ru_RU' ? 'selected' : ''}>Русский</option>
             </select>
             <input type="submit" value="Set lang"/>
-        </form>
+        </form>--%>
 
     <jsp:include page="header.jsp"></jsp:include>
 

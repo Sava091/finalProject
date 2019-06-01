@@ -57,15 +57,16 @@
 							</a>
 						</form>
 					</li>
-					 <form action="/" method="GET">
-					    <li class="nav-item dropdown">
-                            <a class="dropdown-toggle nav-link my-1 ml-2" data-toggle="dropdown">ru</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" value="en" ${lang == 'en' ? 'selected' : ''}>English</a>
-                                <a class="dropdown-item" value="ru" ${lang == 'ru' ? 'selected' : ''}>Русский</a>
-                            </div>
+					<ul class=" nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <form action="/" method="GET">
+                                <select class="form-control form-control-sm" id="lang" name="lang" onchange="submit()">
+                                    <option value="en_US" ${lang == 'en_US' ? 'selected' : ''}>English</option>
+                                    <option value="ru_RU" ${lang == 'ru_RU' ? 'selected' : ''}>Русский</option>
+                                </select>
+                            </form>
                         </li>
-                     </form>
+                    </ul>
 	            </ul>
 	        </div>
 	    </div>
