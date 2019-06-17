@@ -29,9 +29,8 @@
     <jsp:include page="header.jsp"></jsp:include>
 
 
-
 <div class="container">
-	    <form class="form-horizontal" role="form" method="POST" action="/register">
+	    <form class="form-horizontal" role="form" method="POST" >
 	        <div class="row">
 	            <div class="col-md-3"></div>
 	            <div class="col-md-6">
@@ -59,23 +58,35 @@
 	            <div class="col-md-6">
 	                <div class="form-group">
 	                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-							<input type="number" min="12" max="100" class="form-control" id="InputAge" aria-describedby="InputAge" placeholder="<fmt:message key = "age1"/>" required>
+							<input type="number" min="12" max="100" class="form-control" name="InputAge" id="InputAge" aria-describedby="InputAge" placeholder="<fmt:message key = "age1"/>" required>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-					<div class="row">
+				<div class="row">
 	            <div class="col-md-3 field-label-responsive">
 	                <label for="name"><fmt:message key = "height1"/></label>
 	            </div>
 	            <div class="col-md-6">
 	                <div class="form-group">
 	                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-	                        <input type="number" min="120" max="210" class="form-control" id="InputHeight" aria-describedby="InputHeight" placeholder="<fmt:message key = "height1"/>" required>
+	                        <input type="number" min="120" max="210" class="form-control" name="InputHeight" id="InputHeight" aria-describedby="InputHeight" placeholder="<fmt:message key = "height1"/>" required>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
+	        <div class="row">
+              <div class="col-md-3 field-label-responsive">
+                  <label for="name"><fmt:message key = "weight1"/></label>
+                    </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        	   <input type="number" min="40" max="150" class="form-control" name="InputWeight" id="InputWeight" aria-describedby="InputWeight" placeholder="<fmt:message key = "weight1"/>" required>
+                        	 </div>
+                        </div>
+                      </div>
+                    </div>
 					<div class="row">
 							<div class="col-md-3 field-label-responsive">
 									<label for="name"><fmt:message key = "activity1"/></label>
@@ -83,7 +94,7 @@
 							<div class="col-md-6">
 									<div class="form-group">
 											<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-												<select class="form-control" id="FormControlActivity" required>
+												<select class="form-control" name="FormControlActivity" id="FormControlActivity" required>
 													<option><fmt:message key = "min1"/></option>
 													<option><fmt:message key = "low1"/></option>
 													<option><fmt:message key = "med"/></option>
@@ -101,26 +112,14 @@
 							<div class="col-md-6">
 								<div class="form-inline">
 									<label class="btn btn-default active">
-										<input type="radio" class="form-check-input " name="optradio" checked=""><fmt:message key = "woman"/>
+										<input type="radio" class="form-check-input " name="sexradio" checked=""><fmt:message key = "woman"/>
 									</label>
 									<label class="btn btn-default">
-										<input type="radio" class="form-check-input" name="optradio"><fmt:message key = "man"/>
+										<input type="radio" class="form-check-input" name="sexradio"><fmt:message key = "man"/>
 									</label>
 								</div>
 							</div>
 					</div>
-	        <div class="row">
-	            <div class="col-md-3 field-label-responsive">
-	                <label for="email"><fmt:message key = "email"/></label>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="form-group">
-	                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-	                       <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="example@example.com" required>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
 	        <div class="row">
 	            <div class="col-md-3 field-label-responsive">
 	                <label for="password"><fmt:message key = "pass1"/></label>
@@ -150,7 +149,7 @@
 	        <div class="row">
 	            <div class="col-md-3"></div>
 	            <div class="col-md-6">
-	                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i><fmt:message key = "registr"/></button>
+	                <button type="submit" class="btn btn-success"><fmt:message key = "registr"/></button>
 	            </div>
 	        </div>
 	    </form>

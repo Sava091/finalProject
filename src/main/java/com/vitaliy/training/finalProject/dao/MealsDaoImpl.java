@@ -18,8 +18,12 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
     public static final String QUANTITY_OF_100GR_PORTIONS = "quantityOf100grPortions";
     public static final String MEAL_DATE = "meal_date";
 
-    public MealsDaoImpl(String uri, String userName, String password) {
+    private MealsDaoImpl(String uri, String userName, String password) {
         super(uri, userName, password);
+    }
+
+    public static MealsDao getInstance() {
+        return instance;
     }
 
     @Override
@@ -32,13 +36,13 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
         try {
             connection = getConnection();
 
-            final String sql = "INSERT INTO meals (id, meal_client_id, getQuantityOf100grPortions, meal_date) " +
-                    "VALUES(?,?,?,?,?,?,?,?)";
+            final String sql = "INSERT INTO meals (meal_client_id, quantityOf100grPortions, meal_date, productId) " +
+                    "VALUES(?,?,?,?)";
             statement = connection.prepareStatement(sql);
-            statement.setLong(1, meal.getId());
-            statement.setLong(2, meal.getMealClientId());
-            statement.setDouble(3, meal.getQuantityOf100grPortions());
-            statement.setDate(4, new Date(meal.getDate().getTime()));
+            statement.setLong(1, meal.getMealClientId());
+            statement.setDouble(2, meal.getQuantityOf100grPortions());
+            statement.setDate(3, new Date(meal.getDate().getTime()));
+            statement.setLong(4, meal.getProduct().getId());
             return statement.executeUpdate() >= 1;
 
         } catch (final SQLException e) {
@@ -128,9 +132,12 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
         return false;
     }
 
-
     @Override
-    public List<Meal> findAll() {
+    public List<Meal> findAll(long clientId) {
+        return this.findAll(clientId, "");
+    }
+
+    private List<Meal> findAll(long clientId, String pagination) {
         logger.info("Meals findAll");
         Mapper<List<Meal>> mealsMapper = rs -> {
             List<Meal> meals = new ArrayList<>();
@@ -157,6 +164,14 @@ public class MealsDaoImpl extends AbstractDao<Meal> implements MealsDao {
             }
             return meals;
         };
-        return super.findAll("SELECT m.*, p.* FROM meals m, products p WHERE m.productId = p.id", mealsMapper);
+
+        return super.findAll("SELECT m.*, p.* FROM meals m, products p WHERE m.productId = p.id  AND meal_client_id = " + clientId + " " + pagination, mealsMapper);
+
     }
+
+    @Override
+    public List<Meal> findAll(long clientId, int page, int pageSize) {
+        String pagination = "LIMIT " + pageSize + " OFFSET " + page * pageSize;
+        return this.findAll(clientId, pagination);
+   }
 }

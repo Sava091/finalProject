@@ -8,13 +8,23 @@
 <!--    <welcome-file>login_page.jsp</welcome-file>-->
 <!--  </welcome-file-list>-->
   <servlet>
-    <servlet-name>LoginController</servlet-name>
+    <servlet-name>MealController</servlet-name>
     <servlet-class>com.vitaliy.training.finalProject.controller.MealController</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>LoginController</servlet-name>
-    <url-pattern>/login</url-pattern>
+    <servlet-name>MealController</servlet-name>
+    <url-pattern>/meal</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProductController</servlet-name>
+    <servlet-class>com.vitaliy.training.finalProject.controller.ProductController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ProductController</servlet-name>
+    <url-pattern>/product</url-pattern>
   </servlet-mapping>
 
   <filter>

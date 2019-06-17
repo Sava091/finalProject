@@ -12,8 +12,6 @@
 
 
 <html lang="${lang}">
-
-<html>
     <head>
             <title>
                 FoodTracking
@@ -27,14 +25,6 @@
             <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <%--<form action="/" method="GET">
-            <select id="lang" name="lang" onchange="submit()">
-                <option value="en_US" ${lang == 'en_US' ? 'selected' : ''}>English</option>
-                <option value="ru_RU" ${lang == 'ru_RU' ? 'selected' : ''}>Русский</option>
-            </select>
-            <input type="submit" value="Set lang"/>
-        </form>--%>
-
     <jsp:include page="header.jsp"></jsp:include>
 
 
@@ -49,7 +39,7 @@
     			<div class="carousel-item text-center active">
     				<img src="img/slide1.jpg" class="img-fluid" alt="">
     				<div class="carousel-caption">
-    					<h1 class="display-2"><fmt:message key = "profile"/></h1>
+    					<h1 class="display-2"><fmt:message key = "healthy"/></h1>
     					<h3><fmt:message key = "caltrack"/></h3>
     				</div>
     			</div>
@@ -79,11 +69,11 @@
     		<div class="container-fluid">
     			<div class="row jumbotron jumbotron-fluid my-1">
     				<div class="col-10">
-    					<h3><fmt:message key = "finproj"/>
-    						<fmt:message key = "finprojtext"/></h3>
+    					<h2><fmt:message key = "finproj"/></h2>
+    					<h3><fmt:message key = "finprojtext"/></h3>
     				</div>
     				<div class="col-2">
-    					<a href="#"><button class="btn btn-info btn-lg d-block mx-auto"><fmt:message key = "readmore"/></button></a>
+    					<a href="desc.jsp"><button class="btn btn-info btn-lg d-block mx-auto"><fmt:message key = "readmore"/></button></a>
     				</div>
     			</div>
     		</div>

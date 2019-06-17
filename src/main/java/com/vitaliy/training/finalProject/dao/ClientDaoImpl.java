@@ -27,12 +27,15 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
     public static final String PASSWORD = "password";
     public static final String COEF_ID = "coef_id";
     public static final String CLIENT_MEAL_ID = "client_meal_id";
+
     public static ClientDao getInstance() {
         return instance;
     }
+
     public ClientDaoImpl(String uri, String userName, String password) {
         super(uri, userName, password);
     }
+
 
     @Override
     public boolean create(Client client) {
@@ -50,7 +53,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
             statement.setLong(1, client.getId());
             statement.setString(2, client.getName());
             statement.setString(3, client.getPassword());
-            statement.setLong(4, client.getAge());
+            statement.setLong(4, (long) client.getAge());
             statement.setDouble(5, client.getHeight());
             statement.setDouble(6, client.getWeight());
             statement.setString(7, client.getActivity().name());
@@ -109,7 +112,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
             statement = connection.prepareStatement(sql);
             statement.setString(1, client.getName());
             statement.setString(2, client.getPassword());
-            statement.setLong(3, client.getAge());
+            statement.setLong(3, (long) client.getAge());
             statement.setDouble(4, client.getHeight());
             statement.setDouble(5, client.getWeight());
             statement.setString(6, client.getActivity().name());
@@ -201,6 +204,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
             }
             return clients;
         };
+
         return super.findAll("SELECT * FROM clients", clientMapper);
 
     }

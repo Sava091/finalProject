@@ -28,20 +28,18 @@
     <body>
     <jsp:include page="header.jsp"></jsp:include>
 
-
-
-        <div class="container">
-          <div class="row">
+        <div class="container-fluid">
+          <div class="row jumbotron jumbotron-fluid my-1 login">
             <div class="col-md-3"> </div>
             <div class="col-md-6 ">
-              <form class="px-4 py-3" method="GET" action="/login">
+              <form class="px-4 py-3" method="GET" action="/meal">
               <div class="form-group">
-                <label for="exampleDropdownFormEmail1"><fmt:message key = "email"/></label>
-                <input type="text" name="login" class="form-control" id="exampleDropdownFormEmail1" placeholder="login" value="user">
+                <label for="exampleFormEmail1"><fmt:message key = "email"/></label>
+                <input type="text" name="login" class="form-control" id="exampleFormEmail1" placeholder="login" value="user">
               </div>
               <div class="form-group">
-                <label for="exampleDropdownFormPassword1"><fmt:message key = "pass1"/></label>
-                <input type="password" name="pass" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password" value="user">
+                <label for="exampleFormPassword1"><fmt:message key = "pass1"/></label>
+                <input type="password" name="pass" class="form-control" id="exampleFormPassword1" placeholder="Password" value="user">
               </div>
               <button type="submit" class="btn btn-success" value="Login"><fmt:message key = "sign_in"/></button>
             </form>

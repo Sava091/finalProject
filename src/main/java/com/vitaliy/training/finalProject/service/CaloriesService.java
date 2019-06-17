@@ -10,6 +10,7 @@ import java.util.List;
 
 public class CaloriesService {
     private static Logger logger = Logger.getLogger(CaloriesService.class);
+    public static final CaloriesService instance = new CaloriesService();
     /*
     Мужчина
     BMR = 88.36 + (13.4 x вес, кг) + (4.8 х рост, см) – (5.7 х возраст, лет)
@@ -17,7 +18,21 @@ public class CaloriesService {
     Женщина
     BMR = 447.6 + (9.2 x вес, кг) + (3.1 х рост, cм) – (4.3 х возраст, лет)
     BMR = 447.6 + (9.2 x 50) + (3.1 x 172) – (4.3 x 25) = 1333 ккал
+     */
 
+    public CaloriesService() {
+    }
+
+    public static CaloriesService getInstance() {
+        return instance;
+    }
+
+    /**
+     * Calculate calories more then set limit
+     * @param client
+     * @param date
+     * @param meal
+     * @return
      */
     public double calcCaloriesOverhead(Client client, Date date, List<Meal> meal) {
         logger.info("calCalories");

@@ -4,7 +4,7 @@ public class Client {
     private Long id;
     private String name;
     private String password;
-    private int age;
+    private double age;
     private double height;
     private double weight;
     private Activity activity;
@@ -49,7 +49,7 @@ public class Client {
         return clientMealId;
     }
 
-    public int getAge() {
+    public double getAge() {
         return age;
     }
 

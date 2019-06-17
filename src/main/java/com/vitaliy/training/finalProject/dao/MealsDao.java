@@ -9,5 +9,6 @@ public interface MealsDao {
     Meal read(Long id);
     boolean update(Meal meal);
     boolean delete(Meal meal);
-    List<Meal> findAll();
+    List<Meal> findAll(long clientId, int page, int pageSize);
+    List<Meal> findAll(long clientId);
 }

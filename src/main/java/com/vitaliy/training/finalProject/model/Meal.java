@@ -6,7 +6,7 @@ public class Meal {
     private Long id;
     private Product product;
     private double quantityOf100grPortions;
-    private Date date; // Localdate? util or sql?
+    private Date date;
     private Long mealClientId;
 
     public Meal(Long id, Product product, double quantityOf100grPortions, Date date, Long mealClientId) {

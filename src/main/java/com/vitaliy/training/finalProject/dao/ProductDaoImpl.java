@@ -39,15 +39,14 @@ public class ProductDaoImpl extends AbstractDao<Product> implements ProductDao {
         try {
             connection = getConnection();
 
-            final String sql1 = "INSERT INTO products (id, name, fat, protein, carbohydrate, caloriesPer100gr) " +
-                    "VALUES(?,?,?,?,?,?)";
+            final String sql1 = "INSERT INTO products (name, fat, protein, carbohydrate, caloriesPer100gr) " +
+                    "VALUES(?,?,?,?,?)";
             statement = connection.prepareStatement(sql1);
-            statement.setLong(1, product.getId());
-            statement.setString(2, product.getName());
-            statement.setDouble(3, product.getFat());
-            statement.setDouble(4, product.getProtein());
-            statement.setDouble(5, product.getCarbohydrate());
-            statement.setDouble(6, product.getCaloriesPer100gr());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getFat());
+            statement.setDouble(3, product.getProtein());
+            statement.setDouble(4, product.getCarbohydrate());
+            statement.setDouble(5, product.getCaloriesPer100gr());
             return statement.executeUpdate() >= 1;
 
         } catch (final SQLException e) {

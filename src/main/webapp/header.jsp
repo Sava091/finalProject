@@ -34,10 +34,10 @@
 								<a href="index.jsp" class="nav-link active">FoodTracking</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link"><fmt:message key = "profile"/></a>
+								<a href="mealView.jsp" class="nav-link"><fmt:message key = "profile"/></a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link"><fmt:message key = "links"/></a>
+								<a href="desc.jsp" class="nav-link"><fmt:message key = "desc"/></a>
 							</li>
 						</ul>
 					</div>
@@ -59,10 +59,10 @@
 					</li>
 					<ul class=" nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <form action="/" method="GET">
+                            <form action="#" method="GET">
                                 <select class="form-control form-control-sm" id="lang" name="lang" onchange="submit()">
-                                    <option value="en_US" ${lang == 'en_US' ? 'selected' : ''}>English</option>
                                     <option value="ru_RU" ${lang == 'ru_RU' ? 'selected' : ''}>Русский</option>
+                                    <option value="en_US" ${lang == 'en_US' ? 'selected' : ''}>English</option>
                                 </select>
                             </form>
                         </li>

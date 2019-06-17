@@ -13,8 +13,7 @@ public class MealsDaoImplTest {
     MealsDao mealsDao;
     @Before
     public void setUp() throws Exception {
-        mealsDao = new MealsDaoImpl ("jdbc:mysql://localhost:3306/fitnesstracking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                "root", "root");
+        mealsDao = MealsDaoImpl.getInstance();
     }
 
     @Test

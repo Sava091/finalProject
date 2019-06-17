@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -35,7 +35,8 @@
 			<h2><fmt:message key = "oops"/> <fmt:message key = "forbidden"/></h2>
 			<p><fmt:message key = "error4031"/></p>
 			<p><fmt:message key = "error4032"/></p>
-			<a href="index.jsp"><fmt:message key = "go_home"/></a>
+			<a href="reg_page.jsp"><fmt:message key = "go_reg"/></a>
+			<a href="login_page.jsp"><fmt:message key = "go_login"/></a>
 		</div>
 	</div>
 

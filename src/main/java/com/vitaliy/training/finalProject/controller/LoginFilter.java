@@ -9,7 +9,6 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Map;
 
 public class LoginFilter implements Filter {
     private static Logger logger = Logger.getLogger(LoginFilter.class);
@@ -27,11 +26,12 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         logger.info("do Filter");
-        lang(request, response);
         String servletPath = ((HttpServletRequest) request).getServletPath();
-        if (!servletPath.startsWith("/reg_page")
+             if   (!servletPath.startsWith("/reg_page")
                 && !servletPath.startsWith("/index")
+                && !servletPath.startsWith("/register")
                 && !servletPath.startsWith("/login")
+                && !servletPath.startsWith("/desc")
                 && !servletPath.startsWith("/css")
                 && !servletPath.startsWith("/fav")
                 && !servletPath.startsWith("/img")
@@ -40,23 +40,6 @@ public class LoginFilter implements Filter {
         }
 
         filterChain.doFilter(request, response);
-    }
-
-    private void lang(ServletRequest request, ServletResponse resp) {
-        HttpSession session = ((HttpServletRequest) request).getSession(false);
-        String lang = request.getParameter("lang");
-        if (session != null) {
-            String sessLang = session.getAttribute("lang").toString();
-            if (sessLang == null) {
-                session.setAttribute("lang", lang);
-            } else {
-                lang = sessLang;
-            }
-        }
-
-        if (lang != null) {
-            request.setAttribute("lang", lang);
-        }
     }
 
     private boolean auth(ServletRequest request, ServletResponse response) throws ServletException, IOException {
@@ -89,7 +72,7 @@ public class LoginFilter implements Filter {
     private void error(ServletRequest request, ServletResponse response, String message) throws ServletException, IOException {
         logger.error("login error");
         request.setAttribute("errorMessage", message);
-        request.getRequestDispatcher("/login_page.jsp").include(request, response);
+        request.getRequestDispatcher("/error403.jsp").include(request, response);
 
     }
 
